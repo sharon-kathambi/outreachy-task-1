@@ -12,7 +12,7 @@
         <h2>Results of my code:</h2>
         <p id="results" class="block"></p>
         <script id="task_id">
-            {# INPUT #}
+            //{# INPUT #}
             let data = [
                 {"page_id": 6682420, "creation_date": "2021-09-13", "title": "André Baniwa"},
                 {"page_id": 4246775, "creation_date": "2013-12-10", "title": "Benki Piyãko"},
@@ -28,7 +28,17 @@
                 {"page_id": 6549130, "creation_date": "2021-04-10", "title": "Zezico Guajajara"},
             ];
 
-            {# YOUR CODE HERE #}
+            //{# YOUR CODE HERE #}
+            const results = document.getElementById("results");
+            const lines = data.map((item) => {
+                const date = new Date(item.creation_date);
+                const month = date.toLocaleDateString("en-UK", {month: "long"});
+                const day = date.getUTCDate();
+                const year = date.getUTCFullYear();
+                return `Article "${item.title}" (Page ID ${item.page_id}) was created at ${month} ${day}, ${year}.`;
+            });
+
+            results.innerHTML = lines.join("<br>");
         </script>
         <script>
             document.getElementById("code").innerText = document.getElementById("task_id").text;
